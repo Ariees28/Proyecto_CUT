@@ -36,7 +36,7 @@
 
             <li>
                 <a href="#">
-                    <i class="metismenu-icon pe-7s-rocket"></i>
+                    <i class="metismenu-icon pe-7s-notebook"></i>
                     LISTA DE PRUEBA
                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                 </a>
@@ -45,6 +45,12 @@
                         <a onclick="cargarcontenido('ContenedorPrincipal','paginaPrueba.php')">
                             <i class="metismenu-icon"></i>
                             Modulo Prueba
+                        </a>
+                    </li>
+                    <li>
+                        <a onclick="cargarcontenido('ContenedorPrincipal','paginaPrueba2.php')">
+                            <i class="metismenu-icon"></i>
+                            PRESTAMOS
                         </a>
                     </li>
                 </ul>

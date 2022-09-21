@@ -8,7 +8,7 @@ class Conexion
         // $usuario = "sridpec1_TalamantesArma";
         // $contra = "O)Vm9QapxBJk";
         $usuario = "root";
-        $contra = "root";
+        $contra = "";
 
 
         $conn = new PDO("mysql:host=localhost;dbname=Armamento", $usuario, $contra);
