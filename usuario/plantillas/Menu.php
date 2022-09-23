@@ -53,6 +53,12 @@
                             PRESTAMOS
                         </a>
                     </li>
+                    <li>
+                        <a onclick="cargarcontenido('ContenedorPrincipal','formulario.php')">
+                            <i class="metismenu-icon"></i>
+                            FORMULARIO
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>
