@@ -5,13 +5,12 @@ class Conexion
 
     public static function conectar()
     {
-        // $usuario = "sridpec1_TalamantesArma";
-        // $contra = "O)Vm9QapxBJk";
+
         $usuario = "root";
         $contra = "";
 
 
-        $conn = new PDO("mysql:host=localhost;dbname=Armamento", $usuario, $contra);
+        $conn = new PDO("mysql:host=localhost;dbname=biblioteca", $usuario, $contra);
 
         return $conn;
     }
