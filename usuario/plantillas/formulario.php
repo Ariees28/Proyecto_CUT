@@ -21,7 +21,7 @@
           </div>
 
           <div class="col-md-2">
-            <label>PÁGINAS</label>
+            <label>PAGINAS</label>
             <input type="number" id="paginas" class="form-control">
           </div>
 
