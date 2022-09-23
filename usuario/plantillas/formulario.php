@@ -29,6 +29,11 @@
             <label>SIPNOSIS</label>
             <textarea class="form-control" style="resize: none;" id="sipnosis"></textarea>
           </div>
+
+          <div class="col-md-2">
+            <label>GENERO</label>
+            <input type="text" id="genero" class="form-control">
+          </div>
         </div>
         <br>
         <button type="button" id="guardar" class="mb-2 mr-2 btn-hover-shine btn btn-success">GUARDAR</button>
