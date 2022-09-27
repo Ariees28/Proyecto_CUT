@@ -20,13 +20,6 @@ switch ($_GET["op"]) {
                     $_SESSION['nombre'] = $valor->nombre;
                     $_SESSION['login'] = $valor->Login;
                     $_SESSION['id'] = $valor->id;
-                    $rspta2 = $usuario->permiso($valor->id);
-                    $con = 0;
-                    while ($valor2 = $rspta2->fetchObject()) {
-                        $acceso[$con] = $valor2->IdMenu;
-                        $con++;
-                    }
-                    $_SESSION['permiso'] = $acceso;
                     echo json_encode($valor);
                 } else {
                     return false;

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-09-2022 a las 03:00:22
+-- Tiempo de generación: 28-09-2022 a las 00:56:20
 -- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 8.0.19
+-- Versión de PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `biblioteca`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `libros`
+--
+
+CREATE TABLE `libros` (
+  `id_libro` int(9) NOT NULL COMMENT 'ID del libro',
+  `Titulo` varchar(25) NOT NULL COMMENT 'Titulo del libro',
+  `Autor` varchar(25) NOT NULL COMMENT 'Autor del libro',
+  `Paginas` int(10) NOT NULL COMMENT 'Numero de paginas del libro',
+  `Genero` varchar(25) NOT NULL COMMENT 'Genero del libro'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `libros`
+--
+
+INSERT INTO `libros` (`id_libro`, `Titulo`, `Autor`, `Paginas`, `Genero`) VALUES
+(1, 'TITULO PRUEBA', 'AUTOR PRUEBA', 123, 'GENERO PRUEBA'),
+(2, 'NACIDOS DE LA BRUMA', 'BRANDON SANDERSON', 1000, 'FANTASIA');
 
 -- --------------------------------------------------------
 
@@ -48,6 +70,12 @@ INSERT INTO `usuario` (`id`, `Login`, `clave`, `nombre`, `Correo`, `Privilegio`)
 --
 
 --
+-- Indices de la tabla `libros`
+--
+ALTER TABLE `libros`
+  ADD PRIMARY KEY (`id_libro`);
+
+--
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
@@ -56,6 +84,12 @@ ALTER TABLE `usuario`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `libros`
+--
+ALTER TABLE `libros`
+  MODIFY `id_libro` int(9) NOT NULL AUTO_INCREMENT COMMENT 'ID del libro', AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`

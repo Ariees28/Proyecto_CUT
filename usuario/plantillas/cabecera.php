@@ -39,4 +39,3 @@ require_once "librerias.php";
     <div class="app-header-right">
     </div>
 </div>
-<script type="text/javascript" src="../js/creados/usuario.js"></script>

@@ -47,11 +47,6 @@ require_once "ContenedorEscritorio.php";
         </div>
     </div>
     <?php
-require_once "hamburguesa2.php"
-?>
-    <div class="app-drawer-overlay d-none animated fadeIn"></div>
-    <!-- plugin dependencies -->
-    <?php
 require_once "librerias.php";
 ?>
     <script type="text/javascript" src="./../js/creados/contenidoPrincipal.js"></script>
