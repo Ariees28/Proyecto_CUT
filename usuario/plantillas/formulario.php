@@ -25,11 +25,6 @@
             <input type="number" id="paginas" class="form-control">
           </div>
 
-          <div class="col-md-12">
-            <label>SIPNOSIS</label>
-            <textarea class="form-control" style="resize: none;" id="sipnosis"></textarea>
-          </div>
-
           <div class="col-md-2">
             <label>GENERO</label>
             <input type="text" id="genero" class="form-control">

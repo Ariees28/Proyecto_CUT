@@ -23,7 +23,29 @@ function guardar() {
   let autor = $("#autor").val();
   let titulo = $("#titulo").val();
   let paginas = $("#paginas").val();
-  let sipnosis = $("#sipnosis").val();
+  let genero = $("#genero").val();
 
-  alert(titulo + "\n" + autor + "\n" + paginas + "\n" + sipnosis);
+  if (autor == "" || titulo == "" || paginas == "" || genero == "") {
+    alert("LLENA TODOS LOS CAMPOS");
+  } else {
+    //Estructura para el post de Jquery:
+
+    //URL A LA QUE QUEREMOS ACCEDER
+    //DATA QUE VAMOS A ENVIAR
+    //FUNCION PARA MANEJAR EL POST
+
+    $.post(
+      "../../proceso/Controlador_formulario.php?op=guardar",
+      {
+        autor: autor,
+        titulo: titulo,
+        paginas: paginas,
+        apachedecombate: genero,
+      },
+      function (data) {
+        alert(data);
+        cargarcontenido("ContenedorPrincipal", "formulario.php");
+      }
+    );
+  }
 }

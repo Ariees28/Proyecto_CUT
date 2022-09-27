@@ -11,7 +11,7 @@ class Conexion
 
 
         $conn = new PDO("mysql:host=localhost;dbname=biblioteca", $usuario, $contra);
-
+            //PHP DATA OBJECT
         return $conn;
     }
 }
