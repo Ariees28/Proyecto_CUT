@@ -21,4 +21,9 @@ class ModeloFormulario{
       return false;
     }
   }
+
+  public function mostrarLibros(){
+    $setencia = $this->db->query("SELECT * FROM libros");
+    return $setencia;
+  }
 }
