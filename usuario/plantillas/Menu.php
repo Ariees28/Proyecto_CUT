@@ -59,6 +59,13 @@
                             FORMULARIO
                         </a>
                     </li>
+
+                    <li>
+                        <a onclick="cargarcontenido('ContenedorPrincipal','vistaLibros.php')">
+                            <i class="metismenu-icon"></i>
+                            CONSULTA DE LIBROS
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>
