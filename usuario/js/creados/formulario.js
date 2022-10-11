@@ -40,7 +40,7 @@ function guardar() {
         autor: autor,
         titulo: titulo,
         paginas: paginas,
-        apachedecombate: genero,
+        genero: genero,
       },
       function (data) {
         alert(data);

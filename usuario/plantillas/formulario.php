@@ -29,6 +29,11 @@
             <label>GENERO</label>
             <input type="text" id="genero" class="form-control">
           </div>
+
+          <div class="col-md-8">
+            <label>PORTADA</label>
+            <input type="file" id="portada" class="form-control" accept=".jpg,.jpeg,.png">
+          </div>
         </div>
         <br>
         <button type="button" id="guardar" class="mb-2 mr-2 btn-hover-shine btn btn-success">GUARDAR</button>

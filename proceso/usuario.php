@@ -40,18 +40,3 @@ function encriptar($clave)
     $X = password_hash($clave, PASSWORD_ARGON2I, $options);
     return $X;
 }
-
-function foto($y)
-{
-    $b = "";
-    if ($y == "" || $y == "NULL" || $y == "NULO") { //validar si existe en la base de datos
-        $y = "sin_foto.jpg";
-    } else {
-        $b = "../usuario/images/avatars/" . $y;
-        if (file_exists($b)) {
-        } else {
-            $y = "sin_foto.jpg";
-        }
-    }
-    return $y;
-}

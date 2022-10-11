@@ -6,18 +6,24 @@ $modelo = new ModeloFormulario();
 
 switch($_GET["op"]){
   case "guardar":
-      $autor = $_POST["autor"];
-      $titulo = $_POST["titulo"];
-      $paginas = $_POST["paginas"];
-      $genero = $_POST["apachedecombate"];
-
-      $res = $modelo->guardarLibros($titulo, $autor, $paginas, $genero);
-
-      if($res == true){
-        echo "INSERSION DE DATOS EXITOSA";
+      $revisar = getimagesize($_POST["portada"]["tmp_name"]);
+      if($revisar !== false){
+        $autor = $_POST["autor"];
+        $titulo = $_POST["titulo"];
+        $paginas = $_POST["paginas"];
+        $genero = $_POST["genero"];
+  
+        $res = $modelo->guardarLibros($titulo, $autor, $paginas, $genero);
+  
+        if($res == true){
+          echo "INSERSION DE DATOS EXITOSA";
+        }else{
+          echo "HUBO UN ERROR";
+        }
       }else{
-        echo "HUBO UN ERROR";
+        echo "NO ES IMAGEN";
       }
+      
     break;
 
   case "vista":
