@@ -53,14 +53,15 @@
                             PRESTAMOS
                         </a>
                     </li>
+                    <?php if($_SESSION['tipo'] == "0" || $_SESSION['tipo'] == "1"){ ?>
                     <li>
                         <a onclick="cargarcontenido('ContenedorPrincipal','formulario.php')">
                             <i class="metismenu-icon"></i>
                             FORMULARIO
                         </a>
                     </li>
-
-                    <li>
+                    <?php } ?>
+                        <li>
                         <a onclick="cargarcontenido('ContenedorPrincipal','vistaLibros.php')">
                             <i class="metismenu-icon"></i>
                             CONSULTA DE LIBROS

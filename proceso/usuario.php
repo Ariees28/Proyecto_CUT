@@ -20,6 +20,7 @@ switch ($_GET["op"]) {
                     $_SESSION['nombre'] = $valor->nombre;
                     $_SESSION['login'] = $valor->Login;
                     $_SESSION['id'] = $valor->id;
+                    $_SESSION['tipo'] = $valor->Privilegio;
                     echo json_encode($valor);
                 } else {
                     return false;

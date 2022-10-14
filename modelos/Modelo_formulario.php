@@ -12,7 +12,7 @@ class ModeloFormulario{
   }
 
   public function guardarLibros($titulo, $autor, $paginas, $genero){
-    $sentencia = $this->db->prepare("INSERT INTO libros (Titulo, Autor, Paginas, Genero) VALUES (?,?,?,?)");
+    $sentencia = $this->db->prepare("INSERT INTO libros (Titulo, Autor, Paginas, Genero, ISBN, EDITORIAL, FECHA, IDIOMA, EJEMPLARES, PORTADA) VALUES (?,?,?,?,?,?,?,?,?,?)");
 
     try{
       $sentencia->execute([$titulo, $autor, $paginas, $genero]);
@@ -25,5 +25,10 @@ class ModeloFormulario{
   public function mostrarLibros(){
     $setencia = $this->db->query("SELECT * FROM libros");
     return $setencia;
+  }
+
+  public function generos(){
+    $sentencia = $this->db->query("SELECT genero FROM genero");
+    return $sentencia;
   }
 }
