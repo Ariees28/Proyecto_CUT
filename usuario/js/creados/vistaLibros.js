@@ -29,3 +29,7 @@ $("#tabLibros").DataTable({
     },
   },
 });
+
+$(document).ready(function () {
+  $(".carousel").carousel();
+});

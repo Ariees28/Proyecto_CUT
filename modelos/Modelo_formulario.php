@@ -11,11 +11,11 @@ class ModeloFormulario{
     $this->db = Conexion::conectar();
   }
 
-  public function guardarLibros($titulo, $autor, $paginas, $genero){
+  public function guardarLibros($titulo, $autor, $paginas, $genero, $isbn, $editorial, $fecha, $idioma, $ejemplares, $portada){
     $sentencia = $this->db->prepare("INSERT INTO libros (Titulo, Autor, Paginas, Genero, ISBN, EDITORIAL, FECHA, IDIOMA, EJEMPLARES, PORTADA) VALUES (?,?,?,?,?,?,?,?,?,?)");
 
     try{
-      $sentencia->execute([$titulo, $autor, $paginas, $genero]);
+      $sentencia->execute([$titulo, $autor, $paginas, $genero, $isbn, $editorial, $fecha, $idioma, $ejemplares, $portada]);
       return true;
     }catch(Exception $e){
       return false;

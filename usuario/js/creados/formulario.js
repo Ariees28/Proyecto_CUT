@@ -1,90 +1,86 @@
-//PARA ACCEDER A ELEMENTOS DEL DOCUMENTO CON JQUERY:
-
-//# ES PARA ID
-//. ES PARA CLASES
-
-//TIPOS DE VARIABLES EN JAVASCRIPT
-
-//const = para variables constantes
-//var = variables cuyo valor puede ser global
-//let = variables cuyo valor se usa en funciones
-
 $(document).ready(function () {
   cargarSelect();
   $("#guardar").click(function (e) {
     e.preventDefault();
-    guardar(e);
+    if (verificarCampos() == true) {
+      guardar(e);
+    }
   });
 });
 
-function guardar(e) {
-  e.preventDefault(); //no se activara la accion predeterminada
-  //$("#almacenar").prop("disabled", true);
-  //var formData = new FormData($("#formLibro")[0]); // guardar todo el formulario en variable
-  // $.ajax({
-  //   url: "../../proceso/Controlador_formulario.php?op=guardar",
-  //   type: "POST",
-  //   data: formData,
-  //   contentType: false,
-  //   processData: false,
-  // }).done(function (res) {
-  //   bootbox.alert(res);
-  //   alert(res);
-  //   cargarcontenido("ContenedorPrincipal", "formulario.php");
-  // });
-  let autor = $("#autor").val();
+function verificarCampos() {
+  let bandera = true;
+
   let titulo = $("#titulo").val();
+  let autor = $("#autor").val();
   let paginas = $("#paginas").val();
-  let genero = $("#genero").val();
-  let isbn = $("#genero").val();
-  let editorial = $("#genero").val();
-  let fecha = $("#genero").val();
-  let idioma = $("#genero").val();
-  let ejemplares = $("#genero").val();
-  let portada = $("#portada").val();
-  let imagenActual = $("imagenactual");
+  let isbn = $("#isbn").val();
+  let editorial = $("#editorial").val();
+  let fecha = $("#fecha").val();
+  let idioma = $("#idioma").val();
+  let ejemplares = $("#ejemplares").val();
 
-  if (autor == "" || titulo == "" || paginas == "" || genero == "") {
-    alert("LLENA TODOS LOS CAMPOS");
-  } else {
-    //Estructura para el post de Jquery:
-
-    //URL A LA QUE QUEREMOS ACCEDER
-    //DATA QUE VAMOS A ENVIAR
-    //FUNCION PARA MANEJAR EL POST
-
-    $.post(
-      "../../proceso/Controlador_formulario.php?op=guardar",
-      {
-        autor: autor,
-        titulo: titulo,
-        paginas: paginas,
-        genero: genero,
-        isbn: isbn,
-        editorial: editorial,
-        fecha: fecha,
-        idioma: idioma,
-        ejemplares: ejemplares,
-        portada: portada,
-        imagenActual: imagenActual,
-      },
-      function (data) {
-        alert(data);
-        cargarcontenido("ContenedorPrincipal", "formulario.php");
-      }
-    );
+  if (titulo == "") {
+    alert("INGRESE UN TITULO");
+    bandera = false;
   }
+  if (autor == "") {
+    alert("INGRESE UN AUTOR");
+    bandera = false;
+  }
+  if (paginas == "") {
+    alert("INGRESE EL NUMERO DE PAGINAS");
+    bandera = false;
+  }
+  if (isbn == "") {
+    alert("INGRESE EL ISBN");
+    bandera = false;
+  }
+  if (editorial == "") {
+    alert("INGRESE LA EDITORIAL");
+    bandera = false;
+  }
+  if (fecha == "") {
+    alert("INGRESE LA FECHA");
+    bandera = false;
+  }
+  if (idioma == "") {
+    alert("INGRESE EL IDIOMA");
+    bandera = false;
+  }
+  if (ejemplares == "") {
+    alert("INGRESE EL NUMERO DE EJEMPLARES");
+    bandera = false;
+  }
+
+  return bandera;
+}
+
+function guardar(e) {
+  e.preventDefault();
+
+  $("#guardar").prop("disabled", true);
+  var formData = new FormData($("#formLibro")[0]);
+
+  $.ajax({
+    url: "../../proceso/Controlador_formulario.php?op=guardar",
+    type: "POST",
+    data: formData,
+    contentType: false,
+    processData: false,
+  }).done(function (res) {
+    alert(res);
+    cargarcontenido("ContenedorPrincipal", "formulario.php");
+  });
 }
 
 $("#portada").change(function () {
   var x = $("#titulo").val(); //solicitar el nombre
   $("#NomFotLibro").text(x); //agregarlo al nombre de la foto
   const file = this.files[0];
-  var tamaño = this.files[0].size; // tamaño del archivo
   var nombre = this.files[0].name; // nombre del archivo con todo y extension
   var ext = nombre.split("."); //extension del archivo
   ext = ext[ext.length - 1];
-  //console.log(ext);
 
   if (file) {
     if (ext == "jpg" || ext == "png" || ext == "jpeg") {
@@ -100,7 +96,7 @@ $("#portada").change(function () {
         "src",
         "../../files/portadas/Portada_Generica.jpg"
       );
-      $("#FotUse").val("");
+      $("#portada").val("");
     }
   }
 });

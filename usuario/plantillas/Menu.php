@@ -41,18 +41,6 @@
                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                 </a>
                 <ul>
-                    <li>
-                        <a onclick="cargarcontenido('ContenedorPrincipal','paginaPrueba.php')">
-                            <i class="metismenu-icon"></i>
-                            Modulo Prueba
-                        </a>
-                    </li>
-                    <li>
-                        <a onclick="cargarcontenido('ContenedorPrincipal','paginaPrueba2.php')">
-                            <i class="metismenu-icon"></i>
-                            PRESTAMOS
-                        </a>
-                    </li>
                     <?php if($_SESSION['tipo'] == "0" || $_SESSION['tipo'] == "1"){ ?>
                     <li>
                         <a onclick="cargarcontenido('ContenedorPrincipal','formulario.php')">
@@ -61,10 +49,16 @@
                         </a>
                     </li>
                     <?php } ?>
-                        <li>
+                    <li>
                         <a onclick="cargarcontenido('ContenedorPrincipal','vistaLibros.php')">
                             <i class="metismenu-icon"></i>
                             CONSULTA DE LIBROS
+                        </a>
+                    </li>
+                    <li>
+                        <a onclick="cargarcontenido('ContenedorPrincipal','consultaLib.php')">
+                        <i class="metismenu-icon pe-7s-notebook"></i>
+                            CONSULTA
                         </a>
                     </li>
                 </ul>
