@@ -1,0 +1,13 @@
+h4 {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+h6 {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.overflow-ellipsis {
+  text-overflow: ellipsis;
+}
