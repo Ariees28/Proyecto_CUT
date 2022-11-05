@@ -30,6 +30,13 @@ $("#tabLibros").DataTable({
   },
 });
 
-$(document).ready(function () {
-  $(".carousel").carousel();
-});
+$("#radio" + cont).prop("checked", true);
+var cont = 2;
+setInterval(function () {
+  $("#radio" + cont).prop("checked", true);
+  cont++;
+
+  if (cont > 3) {
+    cont = 1;
+  }
+}, 5000);

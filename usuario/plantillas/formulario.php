@@ -1,3 +1,4 @@
+
 <script src="../js/creados/formulario.js"></script>
 
 <h1>FORMULARIO</h1>
@@ -55,12 +56,17 @@
             <input type="number" id="ejemplares" name="ejemplares" class="form-control" onkeydown="eliminarE()">
           </div>
 
+          <div class="col-md-12">
+            <label>SIPNOSIS</label>
+            <textarea id="sipnosis" name="sipnosis"></textarea>
+          </div>
+
           <div class="col-md-8">
             <label>PORTADA</label>
             <input type="file" id="portada" name="portada" class="form-control" accept=".jpg,.jpeg,.png">
 
             <div class="card" style="width: 15rem;">
-              <img src="../../files/portadas/Portada_Generica.jpg" class="card-img-top" id="mostrarimagenLibro">
+              <img src="../../files/portadas/Portada_Generica.png" class="card-img-top" id="mostrarimagenLibro">
             </div>
             <div class="card-body">
               <h5 class="card-title">TITULO IMAGEN</h5>

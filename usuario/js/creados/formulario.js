@@ -94,7 +94,7 @@ $("#portada").change(function () {
       alert("La extension (" + ext + ") NO es valida, verifique¡¡¡");
       $("#mostrarimagenLibro").attr(
         "src",
-        "../../files/portadas/Portada_Generica.jpg"
+        "../../files/portadas/Portada_Generica.png"
       );
       $("#portada").val("");
     }

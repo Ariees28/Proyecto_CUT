@@ -15,6 +15,7 @@ switch($_GET["op"]){
     $fecha = $_POST['fecha'];
     $idioma = $_POST['idioma'];
     $ejemplares = $_POST['ejemplares'];
+    $sipnosis = $_POST['sipnosis'];
     //$portada = $_POST["portada"];
 
     if(isset($_FILES["portada"])){
@@ -44,11 +45,11 @@ switch($_GET["op"]){
       }
 
     }else{
-      $imagen = "Portada_Generica.jpg";
+      $imagen = "Portada_Generica.png";
     }
 
 
-    $res = $modelo->guardarLibros($titulo, $autor, $paginas, $genero, $isbn, $editorial, $fecha, $idioma, $ejemplares, $imagen);
+    $res = $modelo->guardarLibros($titulo, $autor, $paginas, $genero, $isbn, $editorial, $fecha, $idioma, $ejemplares, $imagen, $sipnosis);
 
     if($res == true){
       echo "REGISTRO EXITOSO";
@@ -108,4 +109,5 @@ switch($_GET["op"]){
     echo $opciones;
 
     break;
+
 }
