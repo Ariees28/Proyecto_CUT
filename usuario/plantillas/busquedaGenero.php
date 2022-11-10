@@ -1,5 +1,4 @@
-
-
+<link rel="stylesheet" href="../styles/css/listado.css">
 <script src="../js/creados/busquedaGenero.js"></script>
 <link rel="stylesheet" href="../styles/css/slider2.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
@@ -52,17 +51,9 @@
     <h3 class="text-primary">BUSQUEDA POR TITULO DE LIBRO O AUTOR</h3>
     <input type="text" name="titulo" id="titulo" class="form-control"><br>
     <button id="bscTit" class="mb-2 mr-2 btn btn-success">BUSCAR</button>
-    <div class="divider"></div>
-    <h2 class="text-primary">LISTADO DE GENEROS</h2>
-    <table id="tbGeneros" class="display" style="width: 100%;">
-      <thead>
-        <tr>
-          <th>GENEROS</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
 
-    <button id="btnBuscarGenero" class="mb-2 mr-2 btn btn-success">BUSCAR GENERO</button>
+    <div class="divider"></div>
+
+    <div class="row" id="listadoGeneros"></div>
   </div>
 </div>

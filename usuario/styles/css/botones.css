@@ -1,4 +1,4 @@
-.generalArma {
+.general {
   background-color: #eee;
   color: #444;
   cursor: pointer;
@@ -12,7 +12,7 @@
 }
 
 .activo,
-.generalArma:hover {
+.general:hover {
   background-color: #ccc;
 }
 
@@ -24,7 +24,7 @@
   transition: max-height 0.2s ease-out;
 }
 
-.generalArma:after {
+.general:after {
   content: "\02795"; /* Unicode para el simbolo de + */
   font-size: 13px;
   color: white;

@@ -1,3 +1,5 @@
+clearInterval(playSlider);
+
 var slider = document.querySelector(".slider");
 var nextBtn = document.querySelector(".next-btn");
 var prevBtn = document.querySelector(".prev-btn");
@@ -81,9 +83,6 @@ slider.addEventListener("mouseout", () => {
 // *******************************************************************
 
 $(document).ready(function () {
-  $("#btnBuscarGenero").click(function () {
-    buscarGenero();
-  });
   $("#btnLit").click(function () {
     buscGenPrin("Literatura y Novelas");
   });
@@ -98,42 +97,21 @@ $(document).ready(function () {
   });
 });
 
-$("#tbGeneros").DataTable({
-  bFilter: true,
-  bInfo: false,
-  bPaginate: true,
-  language: {
-    url: "//cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json",
-  },
-  select: {
-    style: "single",
-    info: false,
-  },
-
-  ajax: {
-    url: "../../proceso/Controlador_busqueda.php?op=generos",
-    data: {},
-    type: "POST",
-    dataType: "json",
-    error: function (e) {
-      console.log(e.responseText);
-    },
-  },
-});
-
-function buscarGenero() {
-  var tablaGenero = $("#tbGeneros").DataTable();
-  var datoGenero = tablaGenero.rows({ selected: true }).data();
-  if (datoGenero.length > 0) {
-    generoSeleccionado = datoGenero[0][0];
-    cargarcontenido("ContenedorPrincipal", "listadoLibros.php");
-  } else {
-    alert("SELECCIONE UN GENERO");
+$.post(
+  "../../proceso/Controlador_busqueda.php?op=generosList",
+  {},
+  function (res) {
+    $("#listadoGeneros").append(res);
   }
-}
+);
 
 function buscGenPrin(genero) {
   generoSeleccionado = genero;
+  cargarcontenido("ContenedorPrincipal", "listadoLibros.php");
+}
+
+function buscGenList(btn) {
+  generoSeleccionado = btn.id;
   cargarcontenido("ContenedorPrincipal", "listadoLibros.php");
 }
 

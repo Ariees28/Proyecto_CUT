@@ -42,6 +42,14 @@
                     </a>
                 </li>
             <?php } ?>
+            <?php if($_SESSION['tipo'] == "0" || $_SESSION['tipo'] == "1"){ ?>
+                <li>
+                    <a onclick="cargarcontenido('ContenedorPrincipal','edicionElimin.php')">
+                        <i class="metismenu-icon pe-7s-study"></i>
+                        EDICION/ELIMINACION
+                    </a>
+                </li>
+            <?php } ?>
                 <li>
                     <a onclick="cargarcontenido('ContenedorPrincipal','busquedaGenero.php')">
                         <i class="metismenu-icon pe-7s-notebook"></i>

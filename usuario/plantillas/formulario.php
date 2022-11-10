@@ -1,4 +1,9 @@
-
+<style>
+      .sipnosis {
+        resize: none;
+        height: 100px;
+      }
+</style>
 <script src="../js/creados/formulario.js"></script>
 
 <h1>FORMULARIO</h1>
@@ -58,14 +63,14 @@
 
           <div class="col-md-12">
             <label>SIPNOSIS</label>
-            <textarea id="sipnosis" name="sipnosis"></textarea>
+            <textarea id="sipnosis" name="sipnosis" class="form-control sipnosis"></textarea>
           </div>
 
-          <div class="col-md-8">
+          <div class="col-md-12">
             <label>PORTADA</label>
             <input type="file" id="portada" name="portada" class="form-control" accept=".jpg,.jpeg,.png">
 
-            <div class="card" style="width: 15rem;">
+            <div class="card mt-4" style="width: 15rem;">
               <img src="../../files/portadas/Portada_Generica.png" class="card-img-top" id="mostrarimagenLibro">
             </div>
             <div class="card-body">

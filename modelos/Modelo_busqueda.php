@@ -12,7 +12,7 @@ class ModeloBusqueda {
   }
 
   public function generos(){
-    $sentencia = $this->db->query("SELECT genero FROM genero");
+    $sentencia = $this->db->query("SELECT * FROM genero ORDER BY genero");
     return $sentencia;
   }
 
@@ -28,6 +28,11 @@ class ModeloBusqueda {
 
   public function infoCompleta($id){
     $sentencia = $this->db->query("SELECT * FROM libros WHERE id_libro = '$id';");
+    return $sentencia;
+  }
+
+  public function descGen($genero){
+    $sentencia = $this->db->query("SELECT descripcion FROM genero WHERE genero = '$genero';");
     return $sentencia;
   }
 }

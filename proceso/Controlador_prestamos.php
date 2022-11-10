@@ -51,7 +51,7 @@ switch ($_GET["op"]) {
                 <label>FECHA DE RECOGIDA</label>
                 <input type='date' class='form-control' id='fechaR' min='$today'>
                 <label>FECHA DE ENTREGA</label>
-                <input type='date' class='form-control' disabled id='fechaE'>
+                <input type='date' class='form-control' id='fechaE'>
               </div>
             </div>
           </div>

@@ -2,7 +2,9 @@ $.post(
   "../../proceso/Controlador_busqueda.php?op=listadoLibrosGenero",
   { genero: generoSeleccionado },
   function (res) {
-    $("#lista").append(res);
+    let elemento = JSON.parse(res);
+    $("#lista").append(elemento["lib"]);
+    $("#desc").append(elemento["desc"]);
   }
 );
 

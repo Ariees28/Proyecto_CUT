@@ -31,8 +31,12 @@ switch ($_GET["op"]) {
     $genero = $_POST["genero"];
     $libros = $modelo->librosGenero($genero);
     $cad = "";
+    $cad2 = "";
+    $cont = "";
+    $arr = array();
 
     while($reg = $libros->fetchObject()){
+      $cont = $reg->id_libro;
       $cad .= 
       "
       <div class='col-lg-2 col-md-3 col-sm-6 mb-4'>
@@ -50,7 +54,39 @@ switch ($_GET["op"]) {
       ";
     }
 
-    echo $cad;
+    $desc = $modelo->descGen($genero);
+
+    while($reg = $desc->fetchObject()){
+      $cad2 = "
+        <p>$reg->descripcion</p>
+      ";
+    }
+
+    if($cont != ""){
+      $results = array(
+        "lib" => $cad,
+        "desc" => $cad2
+      );
+
+      echo json_encode($results);
+      
+
+    }else{
+      $cad = "
+        <div class='card mb-4' style='align-items: center; text-align: center'>
+          <div class='col-md-4'>
+            <h3 class='text-primary'>Lo sentimos, tu busqueda no retornó resultados :(</h3>
+          </div>
+        </div>";
+        
+        
+        $results = array(
+          "lib" => $cad,
+          "desc" => $cad2
+        );
+  
+        echo json_encode($results);
+    }
     break;
 
   case "listadoLibrosBusqueda":
@@ -144,4 +180,29 @@ switch ($_GET["op"]) {
 
     echo $cad;
     break;
+
+  case "generosList":
+
+    $gen = $modelo->generos();
+    $cad = "";
+
+    while($reg = $gen->fetchObject()){
+      $cad .= 
+      "
+      <div class='col-lg-4 col-md-4 col-sm-6 mb-4'>
+        <div class='card'>
+          <div class='card-body'>
+            <img src='../../files/generos/$reg->imagen' class='card-img-top' style='border-radius: 10px'>
+            <br><br>
+            <h4 class='text-primary overflow-ellipsis'>$reg->genero</h4>
+            <input type='button' class='mb-2 mr-2 btn-icon btn-shadow btn-outline-2x btn btn-outline-info' value='Información' id='$reg->genero' onclick='buscGenList(this)'>
+          </div>
+        </div>
+      </div>
+      ";
+    }
+
+    echo $cad;
+    break;
+
 }
