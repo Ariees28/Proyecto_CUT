@@ -34,7 +34,13 @@
     <div class="app-sidebar__inner">
         <ul class="vertical-nav-menu">
             <li class="app-sidebar__heading">Menu Principal</li>
-            <?php if($_SESSION['tipo'] == "0" || $_SESSION['tipo'] == "1"){ ?>
+            <li>
+                    <a onclick="cargarcontenido('ContenedorPrincipal','ContenedorEscritorio.php')">
+                        <i class="metismenu-icon pe-7s-study"></i>
+                        MENÚ PRINCIPAL
+                    </a>
+                </li>
+            <?php if($_SESSION['tipo'] == "0" || $_SESSION['tipo'] == "Admin" || $_SESSION['tipo'] == "Empleado"){ ?>
                 <li>
                     <a onclick="cargarcontenido('ContenedorPrincipal','formulario.php')">
                         <i class="metismenu-icon pe-7s-study"></i>
@@ -42,7 +48,7 @@
                     </a>
                 </li>
             <?php } ?>
-            <?php if($_SESSION['tipo'] == "0" || $_SESSION['tipo'] == "1"){ ?>
+            <?php if($_SESSION['tipo'] == "0" || $_SESSION['tipo'] == "Admin" || $_SESSION['tipo'] == "Empleado"){ ?>
                 <li>
                     <a onclick="cargarcontenido('ContenedorPrincipal','edicionElimin.php')">
                         <i class="metismenu-icon pe-7s-study"></i>
@@ -56,22 +62,34 @@
                         CONSULTA DE LIBROS
                     </a>
                 </li>
-
+            <?php if($_SESSION['tipo'] == "0" || $_SESSION['tipo'] == "Admin"){ ?>
             <li>
                 <a href="#">
-                    <i class="metismenu-icon pe-7s-server"></i>
-                    LISTA DE PRUEBA
+                    <i class="metismenu-icon pe-7s-id"></i>
+                    CREACION DE USUARIOS
                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                 </a>
                 <ul>
+                    <?php if($_SESSION['tipo'] == "0" || $_SESSION['tipo'] == "Admin"){ ?>
                     <li>
-                        <a onclick="cargarcontenido('ContenedorPrincipal','vistaLibros.php')">
-                            <i class="metismenu-icon"></i>
-                            CONSULTA DE LIBROS - OLD
-                        </a>
+                    <a onclick="cargarcontenido('ContenedorPrincipal','nuevoUsuario.php')">
+                        <i class="metismenu-icon pe-7s-study"></i>
+                        NUEVO USUARIO
+                    </a>
                     </li>
+                    <?php } ?>
+
+                    <?php if($_SESSION['tipo'] == "0"){ ?>
+                    <li>
+                    <a onclick="cargarcontenido('ContenedorPrincipal','eliminarUsuario.php')">
+                        <i class="metismenu-icon pe-7s-study"></i>
+                        ELIMINAR/EDITAR USUARIO
+                    </a>
+                    </li>
+                    <?php } ?>
                 </ul>
             </li>
+            <?php } ?>
             <li>
                 <a href="#">
                     <i class="metismenu-icon pe-7s-id"></i>

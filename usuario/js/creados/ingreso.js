@@ -10,7 +10,16 @@ $(document).ready(function () {
         if (data != false) {
           $(location).attr("href", "plantillas/BannerUsuario.php");
         } else {
-          alert("Usuario y/o Password incorrectos");
+          Swal.fire({
+            title: "Error!",
+            text: "Usuario y/o contraseña incorrectos!",
+            icon: "warning",
+            showConfirmButton: true,
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            showCancelButton: 0,
+            confirmButtonText: "Entendido",
+          });
         }
       }
     );

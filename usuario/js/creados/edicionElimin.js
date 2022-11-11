@@ -23,12 +23,12 @@ $("#tabLib").DataTable({
   },
 
   ajax: {
-    url: "../../proceso/controlador_edEl.php?op=listadoLib",
+    url: "../../proceso/Controlador_edEl.php?op=listadoLib",
     data: {},
     type: "POST",
     dataType: "json",
     error: function (e) {
-      console.log(e.responseText);
+      alert("ocurrió un error, contacte al administrador");
     },
   },
 
@@ -55,6 +55,10 @@ $(document).ready(function () {
 
   $("#editarP").click(function () {
     editarPortada();
+  });
+
+  $("#eliminar").click(function () {
+    eliminarLib();
   });
 
   $("#tabLib tfoot th").each(function () {
@@ -164,7 +168,9 @@ function editar() {
       }
     );
   } else {
-    alert("Selecciona un libro");
+    swal("SELECCIONE UN LIBRO", {
+      icon: "warning",
+    });
   }
 }
 
@@ -290,7 +296,9 @@ function editarPortada() {
       }
     );
   } else {
-    alert("SELECCIONA UN LIBRO");
+    swal("SELECCIONE UN LIBRO", {
+      icon: "warning",
+    });
   }
 }
 
@@ -318,4 +326,47 @@ function guardarPortada() {
       cargarcontenido("ContenedorPrincipal", "edicionElimin.php");
     }
   });
+}
+
+function eliminarLib() {
+  let tablaLib = $("#tabLib").DataTable();
+  let datosLib = tablaLib.rows({ selected: true }).data();
+
+  if (datosLib.length > 0) {
+    swal({
+      title: "¿Estás Seguro?",
+      text: "Una vez Eliminado, no se puede deshacer",
+      icon: "warning",
+      buttons: ["Cancelar", true],
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        $.post(
+          "../../proceso/Controlador_edEl.php?op=eliminar",
+          {
+            isbn: datosLib[0][2],
+          },
+          function (res) {
+            if (res == "true") {
+              swal("ELIMINACIÓN EXITOSA", {
+                icon: "success",
+              });
+
+              cargarcontenido("ContenedorPrincipal", "edicionElimin.php");
+            } else {
+              swal("HA OCURRIDO UN ERROR", {
+                icon: "warning",
+              });
+            }
+          }
+        );
+      } else {
+        swal("Operación cancelada");
+      }
+    });
+  } else {
+    swal("SELECCIONE UN LIBRO", {
+      icon: "warning",
+    });
+  }
 }

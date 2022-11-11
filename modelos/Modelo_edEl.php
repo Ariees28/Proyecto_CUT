@@ -43,4 +43,15 @@ class ModeloEdicion{
       return false;
     }
   }
+
+  public function eliminar($isbn){
+    $sql = $this->db->prepare("DELETE FROM libros WHERE ISBN = '$isbn';");
+
+    try{
+      $sql->execute();
+      return true;
+    }catch(Exception $e){
+      return false;
+    }
+  }
 }

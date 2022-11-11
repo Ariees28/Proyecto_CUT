@@ -20,7 +20,7 @@ session_destroy();
         <link rel="stylesheet" href="./vendors/linearicons-master/dist/web-font/style.css">
         <link rel="stylesheet" href="./vendors/pixeden-stroke-7-icon-master/pe-icon-7-stroke/dist/pe-icon-7-stroke.css">
         <link href="./styles/css/base.css" rel="stylesheet">
-        
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     </head> 
     <body>
         <div class="app-container app-theme-white body-tabs-shadow">
@@ -73,6 +73,11 @@ session_destroy();
                                             </div>
                                         </div>
                                     </form>
+                                    <br><br><br><br><br>
+        <div class="divider"></div>
+        <div id="nuevo">
+            <label>¿ERES NUEVO? <a href="plantillas/nuevaCuenta.php">Crea una cuenta</a></label><br><br>
+        </div>
                                 </div>
                             </div>
                         </div>
@@ -80,6 +85,8 @@ session_destroy();
                 </div>
             </div>
         </div>
+
+        
         <!-- plugin dependencies -->
         <script type="text/javascript" src="./vendors/jquery/dist/jquery.js"></script>
         <script type="text/javascript" src="./vendors/jquery/dist/jquery.min.js"></script>

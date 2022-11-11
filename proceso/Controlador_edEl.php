@@ -5,7 +5,7 @@ require_once "../modelos/Modelo_edEl.php";
 $modelo = new ModeloEdicion();
 
 switch ($_GET["op"]) {
-  case 'listadoLib':
+  case "listadoLib":
 
     $datos = $modelo->datos();
     $arr = array();
@@ -121,6 +121,19 @@ switch ($_GET["op"]) {
       echo "Correcto";
     }else{
       echo "Ocurrió un error";
+    }
+    break;
+
+  case "eliminar":
+
+    $isbn = $_POST["isbn"];
+
+    $res = $modelo->eliminar($isbn);
+
+    if($res == true){
+      echo "true";
+    }else{
+      echo "false";
     }
     break;
   

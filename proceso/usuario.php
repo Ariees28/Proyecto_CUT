@@ -17,9 +17,10 @@ switch ($_GET["op"]) {
         while ($valor = $rspta->fetchObject()) {
             if (isset($valor->clave)) {
                 if (password_verify($clavea, $valor->clave)) {
-                    $_SESSION['nombre'] = $valor->nombre;
-                    $_SESSION['login'] = $valor->Login;
                     $_SESSION['id'] = $valor->id;
+                    $_SESSION['login'] = $valor->Login;
+                    $_SESSION['nombre'] = $valor->nombre;
+                    $_SESSION['Correo'] = $valor->Correo;
                     $_SESSION['tipo'] = $valor->Privilegio;
                     echo json_encode($valor);
                 } else {
