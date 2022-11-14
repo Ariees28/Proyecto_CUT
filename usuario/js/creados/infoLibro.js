@@ -1,5 +1,5 @@
 $.post(
-  "../../proceso/controlador_busqueda.php?op=infoCompl",
+  "../../proceso/Controlador_busqueda.php?op=infoCompl",
   { id: idInfo },
   function (res) {
     $("#info").append(res);

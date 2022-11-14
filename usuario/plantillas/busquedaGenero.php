@@ -11,7 +11,7 @@
     <div class="slider-container">
     <div class="slider">
       <div class="slide active">
-        <img src="../../files/generos/literatura.jpg" alt="">
+        <img src="../../files/generos/Literatura.jpg" alt="">
         <div class="info">
           <h2>LITERATURA Y NOVELAS</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="slide">
-        <img src="../../files/generos/derecho.jpg" alt="">
+        <img src="../../files/generos/Derecho.jpg" alt="">
         <div class="info">
           <h2>DERECHO</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>

@@ -1,5 +1,5 @@
 $.post(
-  "../../proceso/controlador_prestamos.php?op=infLib",
+  "../../proceso/Controlador_prestamos.php?op=infLib",
   { id: idInfo },
   function (res) {
     $("#info").append(res);
