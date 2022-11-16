@@ -20,7 +20,8 @@ switch ($_GET["op"]) {
 
     if($usCheck == ""){
       $clave = encriptar($clave);
-      $res = $modelo->nuevo($login, $clave, $nombre, $correo, $privilegio);
+      $token = generarToken();
+      $res = $modelo->nuevo($login, $clave, $nombre, $correo, $privilegio, $token);
 
       if($res == true){
         echo "exito";
@@ -49,7 +50,8 @@ switch ($_GET["op"]) {
 
     if($usCheck == ""){
       $clave = encriptar($clave);
-      $res = $modelo->nuevo($login, $clave, $nombre, $correo, $privilegio);
+      $token = generarToken();
+      $res = $modelo->nuevo($login, $clave, $nombre, $correo, $privilegio, $token);
 
       if($res == true){
         echo "exito";
@@ -139,4 +141,8 @@ function encriptar($clave)
     $options = ['memory_cost' => 2048, 'time_cost' => 4, 'threads' => 3];
     $X = password_hash($clave, PASSWORD_ARGON2I, $options);
     return $X;
+}
+function generarToken(){
+  $gen = md5(uniqid(mt_rand(), false));
+  return $gen;
 }

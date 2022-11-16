@@ -6,6 +6,10 @@ $(document).ready(function () {
   $("#actPss").click(function () {
     actPss();
   });
+
+  $("#verCor").click(function () {
+    solVerCor();
+  });
 });
 
 function guardar() {
@@ -146,6 +150,16 @@ function guardarContra() {
       }
     );
   }
+}
+
+function solVerCor() {
+  $.post(
+    "../../proceso/Controlador_cuenta.php?op=verificar",
+    {},
+    function (res) {
+      alert(res);
+    }
+  );
 }
 
 function cancelar() {

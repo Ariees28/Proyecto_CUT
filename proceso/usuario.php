@@ -22,6 +22,7 @@ switch ($_GET["op"]) {
                     $_SESSION['nombre'] = $valor->nombre;
                     $_SESSION['Correo'] = $valor->Correo;
                     $_SESSION['tipo'] = $valor->Privilegio;
+                    $_SESSION['verificado'] = $valor->verificado;
                     echo json_encode($valor);
                 } else {
                     return false;

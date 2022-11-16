@@ -39,4 +39,9 @@ class ModeloCuenta {
     return $sql;
   }
 
+  public function traerTokenUs($id){
+    $sql = $this->db->query("SELECT TokenUsuario FROM usuario WHERE id = '$id';");
+
+    return $sql;
+  }
 }

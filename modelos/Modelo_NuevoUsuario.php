@@ -22,11 +22,11 @@ class ModeloNuevoUsuario{
     return $sql;
   }
 
-  public function nuevo($login, $clave, $nombre, $correo, $privilegio){
-    $sql = $this->db->prepare("INSERT INTO usuario (Login, clave, nombre, Correo, Privilegio) VALUES (?,?,?,?,?);");
+  public function nuevo($login, $clave, $nombre, $correo, $privilegio, $token){
+    $sql = $this->db->prepare("INSERT INTO usuario (Login, clave, nombre, Correo, Privilegio, TokenUsuario) VALUES (?,?,?,?,?,?);");
 
     try {
-      $sql->execute([$login, $clave, $nombre, $correo, $privilegio]);
+      $sql->execute([$login, $clave, $nombre, $correo, $privilegio, $token]);
       return true;
     } catch (Exception $e) {
       return $e;
