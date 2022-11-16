@@ -111,6 +111,12 @@
                     </li>
                 </ul>
             </li>
+            <li>
+                    <a onclick="cargarcontenido('ContenedorPrincipal','pruebaEmail.php')">
+                        <i class="metismenu-icon pe-7s-notebook"></i>
+                        PRUEBA EMAIL
+                    </a>
+            </li>
         </ul>
     </div>
 </div>

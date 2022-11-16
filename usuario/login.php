@@ -12,7 +12,7 @@ session_destroy();
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>Login Biblioteca</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
-        <meta name="description" content="ArchitectUI HTML Bootstrap 5 Dashboard Template">
+        <meta name="description" content="BIBLIOTECA ANDROMEDA">
         <!-- Disable tap highlight on IE -->
         <meta name="msapplication-tap-highlight" content="no">
         <link rel="stylesheet" href="./vendors/@fortawesome/fontawesome-free/css/all.min.css">

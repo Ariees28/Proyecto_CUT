@@ -47,51 +47,73 @@ function nuevoUs() {
       });
     } else {
       $.post(
-        "../../proceso/Controlador_NuevoUsuario.php?op=NuevoUser",
-        {
-          email: email,
-          nombre: nombre,
-          user: user,
-          contra: contra,
-          tipo: tipo,
-        },
+        "../../proceso/Controlador_Cuenta.php?op=verificarEmail",
+        { correo: email },
         function (res) {
-          if (res == "0") {
+          if (res == "error") {
             Swal.fire({
               title: "Error!",
-              text: "El usuario ya existe!",
+              text: "El Correo ya está registrado!",
               icon: "warning",
               showConfirmButton: true,
               allowOutsideClick: false,
               allowEscapeKey: false,
               showCancelButton: 0,
               confirmButtonText: "Entendido",
-            });
-          } else if (res == "exito") {
-            Swal.fire({
-              title: "Usuario Creado Exitosamente!",
-              icon: "success",
-              showConfirmButton: true,
-              allowOutsideClick: false,
-              allowEscapeKey: false,
-              showCancelButton: 0,
-              confirmButtonText: "OK",
-            }).then(function (e) {
-              if (e.value) {
-                cargarcontenido("ContenedorPrincipal", "nuevoUsuario.php");
-              }
             });
           } else {
-            Swal.fire({
-              title: "Error!",
-              text: "Ocurrió un error!",
-              icon: "warning",
-              showConfirmButton: true,
-              allowOutsideClick: false,
-              allowEscapeKey: false,
-              showCancelButton: 0,
-              confirmButtonText: "Entendido",
-            });
+            $.post(
+              "../../proceso/Controlador_NuevoUsuario.php?op=NuevoUser",
+              {
+                email: email,
+                nombre: nombre,
+                user: user,
+                contra: contra,
+                tipo: tipo,
+              },
+              function (res) {
+                if (res == "0") {
+                  Swal.fire({
+                    title: "Error!",
+                    text: "El usuario ya existe!",
+                    icon: "warning",
+                    showConfirmButton: true,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    showCancelButton: 0,
+                    confirmButtonText: "Entendido",
+                  });
+                } else if (res == "exito") {
+                  Swal.fire({
+                    title: "Usuario Creado Exitosamente!",
+                    icon: "success",
+                    showConfirmButton: true,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    showCancelButton: 0,
+                    confirmButtonText: "OK",
+                  }).then(function (e) {
+                    if (e.value) {
+                      cargarcontenido(
+                        "ContenedorPrincipal",
+                        "nuevoUsuario.php"
+                      );
+                    }
+                  });
+                } else {
+                  Swal.fire({
+                    title: "Error!",
+                    text: "Ocurrió un error!",
+                    icon: "warning",
+                    showConfirmButton: true,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    showCancelButton: 0,
+                    confirmButtonText: "Entendido",
+                  });
+                }
+              }
+            );
           }
         }
       );

@@ -46,38 +46,57 @@ function nuevoUs() {
       });
     } else {
       $.post(
-        "../../proceso/Controlador_NuevoUsuario.php?op=NuevoLector",
-        { email: email, nombre: nombre, user: user, contra: contra },
+        "../../proceso/Controlador_cuenta.php?op=verificarEmail",
+        { correo: email },
         function (res) {
-          if (res == "0") {
-            Swal.fire({
-              title: "Error!",
-              text: "El usuario ya existe!",
-              icon: "warning",
-              showConfirmButton: true,
-              allowOutsideClick: false,
-              allowEscapeKey: false,
-              showCancelButton: 0,
-              confirmButtonText: "Entendido",
-            });
-          } else if (res == "exito") {
-            Swal.fire({
-              title: "Usuario Creado Exitosamente!",
-              icon: "success",
-              showConfirmButton: true,
-              allowOutsideClick: false,
-              allowEscapeKey: false,
-              showCancelButton: 0,
-              confirmButtonText: "OK",
-            }).then(function (e) {
-              if (e.value) {
-                $(location).attr("href", "../login.php");
+          if (res == "true") {
+            $.post(
+              "../../proceso/Controlador_NuevoUsuario.php?op=NuevoLector",
+              { email: email, nombre: nombre, user: user, contra: contra },
+              function (res) {
+                if (res == "0") {
+                  Swal.fire({
+                    title: "Error!",
+                    text: "El usuario ya existe!",
+                    icon: "warning",
+                    showConfirmButton: true,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    showCancelButton: 0,
+                    confirmButtonText: "Entendido",
+                  });
+                } else if (res == "exito") {
+                  Swal.fire({
+                    title: "Usuario Creado Exitosamente!",
+                    icon: "success",
+                    showConfirmButton: true,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    showCancelButton: 0,
+                    confirmButtonText: "OK",
+                  }).then(function (e) {
+                    if (e.value) {
+                      $(location).attr("href", "../login.php");
+                    }
+                  });
+                } else {
+                  Swal.fire({
+                    title: "Error!",
+                    text: "Ocurrió un error!",
+                    icon: "warning",
+                    showConfirmButton: true,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    showCancelButton: 0,
+                    confirmButtonText: "Entendido",
+                  });
+                }
               }
-            });
+            );
           } else {
             Swal.fire({
               title: "Error!",
-              text: "Ocurrió un error!",
+              text: "Correo ya registrado, ingrese uno nuevo!",
               icon: "warning",
               showConfirmButton: true,
               allowOutsideClick: false,
