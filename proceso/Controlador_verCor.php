@@ -1,28 +1,26 @@
 <?php
 
-//$usuario = "u179151166_Ariees";
-//$contra = "ArieesAndrom2803";
-//u179151166_biblioteca
-$usuario = "root";
-$contra = "";
-$conn = new PDO("mysql:host=localhost;dbname=biblioteca", $usuario, $contra);
+require_once "../modelos/Modelo_verCor.php";
 
+$modelo = new ModeloVerCor();
 
-function validarToken($id, $token)
-  {
-    global $conn;
-    $sql = $conn->query("SELECT verificado FROM usuario WHERE id = '$id' and TokenUsuario = '$token' LIMIT 1;");
+switch ($_GET["op"]) {
+  case 'verCor':
+    $id = $_POST["id"];
+    $token = $_POST["token"];
+
+    $datos = $modelo->validarToken($id, $token);
     $campo = "";
     
-    while($res = $sql->fetchObject()){
+    while($res = $datos->fetchObject()){
       $campo = $res->verificado;
     }
-    
+
     if($campo != ""){
       if($campo == 1){
         $msg = "La cuenta ya ha sido activada anteriormente";
       }else{
-        if(valCorreo($id)){
+        if($modelo->valCorreo($id)){
           $msg = "Correo Validado!";
         }else{
           $msg = "Error al validar, notifique al administrador";
@@ -32,12 +30,7 @@ function validarToken($id, $token)
       $msg = "No existe registro";
     }
 
-    return $msg;
-  }
-
-function valCorreo($id){
-  global $conn;
-  $sql = $conn->prepare("UPDATE usuario SET verificado = 1 WHERE id = '$id'");
-  $res = $sql->execute();
-  return $res;
+    echo $msg;
+    break;
+  
 }

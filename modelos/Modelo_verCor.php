@@ -17,4 +17,10 @@ class ModeloVerCor {
     return $sql;
   }
 
+  public function valCorreo($id){
+    $sql = $this->db->prepare("UPDATE usuario SET verificado = 1 WHERE id = '$id'");
+    $res = $sql->execute();
+    return $res;
+  }
+
 }

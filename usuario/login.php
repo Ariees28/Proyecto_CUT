@@ -63,6 +63,7 @@ session_destroy();
                                                     <label for="examplePassword" class="form-label">Contraseña </label>
                                                     <input name="password" id="examplePassword"
                                                         placeholder="Clave de acceso" type="password" class="form-control">
+                                                    <a href="plantillas/solicNuevContra.php">¿Has olvidado tu contraseña?</a>
                                                 </div>
                                             </div>
                                         </div>

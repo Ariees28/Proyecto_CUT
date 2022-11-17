@@ -157,7 +157,14 @@ function solVerCor() {
     "../../proceso/Controlador_cuenta.php?op=verificar",
     {},
     function (res) {
-      alert(res);
+      if (res == "exito") {
+        $("#divVerCor").html("");
+        let cadGral = `
+          <h3 class="text-success">Solicitud realizada</h3>
+          <p>Revisa tu bandeja de entrada (incluida la carpeta de "spam" o Correo no deseado), si ya realizaste la verificación, inicia sesión nuevamente para aplicar los cambios</p>
+        `;
+        $("#divVerCor").append(cadGral);
+      }
     }
   );
 }

@@ -52,6 +52,7 @@
     <?php if($_SESSION['verificado'] == 0){ ?>
     <div class="col-md-6" id="divVerCor">
       <h3 class="text-warning">Correo no verificado</h3>
+      <h5>Si ya realizaste la verificación, inicia sesión nuevamente para aplicar los cambios</h5>
       <button class="mb-2 mr-2 btn btn-warning" type="button" id="verCor">SOLICITAR VERIFICACIÓN</button>
     </div>
     <?php }else{ ?>

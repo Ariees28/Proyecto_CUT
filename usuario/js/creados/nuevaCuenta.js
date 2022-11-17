@@ -26,7 +26,6 @@ function nuevoUs() {
   } else {
     if (
       es(email) ||
-      es(nombre) ||
       es(user) ||
       es(contra) ||
       email == "" ||
