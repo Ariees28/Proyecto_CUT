@@ -1,7 +1,13 @@
 $(document).ready(function () {
   $("#formDatos").submit(function (e) {
     e.preventDefault();
-    guardar();
+    $("#btn").append(
+      `<button type='button' id='actN' class='mb-2 mr-2 btn btn-success' onclick="guardarN()">ACTUALIZAR NOMBRE</button>
+      <button type='button' id='actC' class='mb-2 mr-2 btn btn-success' onclick="guardarE()">ACTUALIZAR CORREO</button>`
+    );
+    $("#actD").prop("disabled", true);
+    $("#nomUs").prop("disabled", false);
+    $("#emUs").prop("disabled", false);
   });
   $("#actPss").click(function () {
     actPss();
@@ -10,9 +16,105 @@ $(document).ready(function () {
   $("#verCor").click(function () {
     solVerCor();
   });
-});
 
-function guardar() {
+  $("#actN").click(function () {
+    guardarN();
+  });
+
+  $("#actC").click(function () {
+    guardarE();
+  });
+});
+function guardarN() {
+  let nombre = $("#nomUs").val();
+
+  $.post(
+    "../../proceso/Controlador_cuenta.php?op=grdDatosNombre",
+    { nombre: nombre },
+    function (res) {
+      if (res == "true") {
+        Swal.fire({
+          title: "Completado!",
+          text: "Se han actualizado tus datos",
+          icon: "success",
+          showConfirmButton: true,
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          showCancelButton: 0,
+          confirmButtonText: "Entendido",
+        });
+        cargarcontenido("ContenedorPrincipal", "cuenta.php");
+      } else {
+        Swal.fire({
+          title: "Error!",
+          text: "Ocurrió un error actualizando los datos",
+          icon: "warning",
+          showConfirmButton: true,
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          showCancelButton: 0,
+          confirmButtonText: "Entendido",
+        });
+        cargarcontenido("ContenedorPrincipal", "cuenta.php");
+      }
+    }
+  );
+}
+function guardarE() {
+  let correo = $("#emUs").val();
+
+  $.post(
+    "../../proceso/Controlador_cuenta.php?op=verificarEmail",
+    { correo: correo },
+    function (res) {
+      if (res == "error") {
+        Swal.fire({
+          title: "Error!",
+          text: "Email ya registrado, ingrese otro correo",
+          icon: "warning",
+          showConfirmButton: true,
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          showCancelButton: 0,
+          confirmButtonText: "Entendido",
+        });
+      } else {
+        $.post(
+          "../../proceso/Controlador_cuenta.php?op=grdDatosEmail",
+          { email: correo },
+          function (res) {
+            if (res == "true") {
+              Swal.fire({
+                title: "Completado!",
+                text: "Se han actualizado tus datos",
+                icon: "success",
+                showConfirmButton: true,
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                showCancelButton: 0,
+                confirmButtonText: "Entendido",
+              });
+              cargarcontenido("ContenedorPrincipal", "cuenta.php");
+            } else {
+              Swal.fire({
+                title: "Error!",
+                text: "Ocurrió un error actualizando los datos",
+                icon: "warning",
+                showConfirmButton: true,
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                showCancelButton: 0,
+                confirmButtonText: "Entendido",
+              });
+              cargarcontenido("ContenedorPrincipal", "cuenta.php");
+            }
+          }
+        );
+      }
+    }
+  );
+}
+function guardar1() {
   let nombre = $("#nomUs").val();
   let correo = $("#emUs").val();
 

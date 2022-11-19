@@ -3,7 +3,7 @@
 require_once "../modelos/Modelo_busqueda.php";
 
 $modelo = new ModeloBusqueda();
-
+session_start();
 
 switch ($_GET["op"]) {
   case "generos":
@@ -160,22 +160,34 @@ switch ($_GET["op"]) {
                 <h6><label style='font-weight: 600'>AÑO DE PUBLICACIÓN:</label> $reg->Fecha</h6>
               </div>";
 
-      if($reg->prestados < ($reg->Ejemplares - 3)){
-        $cad .= "
-              <button class='mb-2 mr-2 btn-hover-shine btn btn-success' id='$reg->id_libro' onclick='solicitarPrestamo(this)'>SOLICITAR PRESTAMO</button>
+      if($_SESSION["verificado"] == "1"){
+        if($reg->prestados < ($reg->Ejemplares - 3)){
+          $cad .= "
+                <button class='mb-2 mr-2 btn-hover-shine btn btn-success' id='$reg->id_libro' onclick='solicitarPrestamo(this)'>SOLICITAR PRESTAMO</button>
+              </div>
             </div>
           </div>
-        </div>
-        ";
+          ";
+        }else{
+          $cad .= "
+                <button disabled class='mb-2 mr-2 btn btn-success disabled'>SOLICITAR PRESTAMO</button>
+                <h4>Libro no disponible para prestamo</h4>
+              </div>
+            </div>
+          </div>
+          ";
+        }
       }else{
         $cad .= "
-              <button disabled class='mb-2 mr-2 btn btn-success disabled'>SOLICITAR PRESTAMO</button>
-              <h4>Libro no disponible para prestamo</h4>
+                <button disabled class='mb-2 mr-2 btn btn-success disabled'>SOLICITAR PRESTAMO</button>
+                <h4>Libro no disponible para prestamo(verifica tu correo electronico)</h4>
+              </div>
             </div>
           </div>
-        </div>
-        ";
+          ";
       }
+
+      
     }
 
     echo $cad;

@@ -35,22 +35,34 @@ switch ($_GET["op"]) {
 
     break;
 
-  case "grdDatos":
+  case "grdDatosNombre":
 
     $id = $_SESSION["id"];
     $nombre = $_POST["nombre"];
-    $correo = $_POST["correo"];
-
-    $res = $modelo->actDatos($nombre, $correo, $id);
+    $res = $modelo->actDatosNombre($nombre, $id);
 
     if($res == true){
       $_SESSION["nombre"] = $nombre;
-      $_SESSION["Correo"] = $correo;
       echo "true";
     }else{
       echo "false";
     }
     break;
+
+    case "grdDatosEmail":
+
+      $id = $_SESSION["id"];
+      $email = $_POST["email"];
+      $res = $modelo->actDatosEmail($email, $id);
+  
+      if($res == true){
+        $_SESSION["Correo"] = $email;
+        $_SESSION["verificado"] = "0";
+        echo "true";
+      }else{
+        echo "false";
+      }
+      break;
 
   case "verificarEmail":
 

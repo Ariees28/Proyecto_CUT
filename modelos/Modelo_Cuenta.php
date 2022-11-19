@@ -22,8 +22,19 @@ class ModeloCuenta {
     }
   }
 
-  public function actDatos($nombre, $correo, $id){
-    $sql = $this->db->prepare("UPDATE usuario SET nombre = '$nombre', Correo = '$correo' WHERE id = '$id';");
+  public function actDatosNombre($nombre, $id){
+    $sql = $this->db->prepare("UPDATE usuario SET nombre = '$nombre' WHERE id = '$id';");
+
+    try {
+      $sql->execute();
+      return true;
+    } catch (Exception $e) {
+      return false;
+    }
+  }
+
+  public function actDatosEmail($email, $id){
+    $sql = $this->db->prepare("UPDATE usuario SET Correo = '$email', verificado = 0 WHERE id = '$id';");
 
     try {
       $sql->execute();

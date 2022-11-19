@@ -1,5 +1,6 @@
 <script src="../js/creados/nuevoUsuario.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<?php session_start() ?>
 
 
 <div class="card">
@@ -37,8 +38,12 @@
           <div class="col-md-4">
             <label>TIPO DE USUARIO</label>
             <select name="tipo" id="tipo" class="form-control">
+              <?php if($_SESSION["tipo"] == "0"){ ?>
               <option value="Admin">ADMINISTRADOR</option>
+              <?php }?>
+              <?php if($_SESSION["tipo"] == "0" || $_SESSION["tipo"] == "Admin"){ ?>
               <option value="Empleado">EMPLEADO</option>
+              <?php }?>
               <option value="Lector">LECTOR</option>
             </select>
           </div>

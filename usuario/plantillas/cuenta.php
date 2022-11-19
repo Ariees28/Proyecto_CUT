@@ -12,20 +12,23 @@
     <form id="formDatos">
       <div class="col-md-6">
         <label for="nomUs">NOMBRE</label>
-        <input type="text" class="form-control" id="nomUs" value="<?php echo $_SESSION["nombre"]; ?>" oninput="this.value = eliminarAcentos(this.value)">
+        <input type="text" disabled class="form-control" id="nomUs" value="<?php echo $_SESSION["nombre"]; ?>" oninput="this.value = eliminarAcentos(this.value)">
       </div>
 
       <div class="col-md-6"></div>
 
       <div class="col-md-6">
         <label for="emUs">EMAIL</label>
-        <input type="email" class="form-control" id="emUs" value="<?php echo $_SESSION["Correo"]; ?>">
+        <input type="email" disabled class="form-control" id="emUs" value="<?php echo $_SESSION["Correo"]; ?>">
       </div>
 
-      <div class="col-md-6"></div>
-      
+      <div class="col-md-6 mt-3"></div>
+        <button type="submit" id="actD" class="mb-2 mr-2 btn btn-success">ACTUALIZAR DATOS</button>
       <div class="col-md-6 mt-3">
-        <button class="mb-2 mr-2 btn btn-success">ACTUALIZAR DATOS</button>
+        
+      </div>
+      <div class="col-md-6 mt-3" id="btn">
+        
       </div>
     </form>
 
