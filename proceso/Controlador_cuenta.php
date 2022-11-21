@@ -10,13 +10,6 @@ require '../PHPMailer/src/PHPMailer.php';
 require '../PHPMailer/src/SMTP.php';
 
 
-
-try{
-    
-}catch(Exception $e){
-  echo "Hubo un error: ", $mail->ErrorInfo;
-}
-
 $modelo = new ModeloCuenta();
 
 

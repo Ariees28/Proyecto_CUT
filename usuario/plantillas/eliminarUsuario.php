@@ -7,7 +7,7 @@
 <div class="main-card mb-3 card">
   <div class="card-header"><h4>EDITAR</h4></div>
   <div class="card-body">
-    <h3 class="text-primary">SELECCIONE UN LIBRO</h3>
+    <h3 class="text-primary">SELECCIONE UN USUARIO</h3>
     <table id="tabUs" class="display" style="width: 100%;">
       <thead>
         <tr>

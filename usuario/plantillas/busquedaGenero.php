@@ -14,7 +14,7 @@
         <img src="../../files/generos/Literatura.jpg" alt="">
         <div class="info">
           <h2>LITERATURA Y NOVELAS</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p>La novela es la obra por excelencia del género narrativo y se distingue por su extensión y profundidad en torno al desarrollo de situaciones, personajes y el uso de recursos literarios.</p>
           <button id="btnLit" class="mb-2 mr-2 btn btn-success">Lista de libros</button>
         </div>
       </div>
@@ -22,7 +22,7 @@
         <img src="../../files/generos/medicina.jpg" alt="">
         <div class="info">
           <h2>MEDICINA</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p>Medicina es la 'ciencia de la sanación' o práctica del diagnóstico, tratamiento y prevención de alguna enfermedad, infección o dolencia. Medicina también es sinónimo de medicamento o remedio.</p>
           <button id="btnMed" class="mb-2 mr-2 btn btn-success">Lista de libros</button>
         </div>
       </div>
@@ -30,7 +30,7 @@
         <img src="../../files/generos/Derecho.jpg" alt="">
         <div class="info">
           <h2>DERECHO</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p>El derecho es el conjunto de principios y normas, generalmente inspirados en ideas de justicia y orden, que regula las relaciones humanas en toda sociedad y cuya observancia puede ser impuesta de forma coactiva por parte de un poder público.</p>
           <button id="btnDer" class="mb-2 mr-2 btn btn-success">Lista de libros</button>
         </div>
       </div>

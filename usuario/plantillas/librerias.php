@@ -16,8 +16,12 @@
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/v/dt/dt-1.12.1/sl-1.4.0/datatables.min.js"></script>
 <script src="../vendors/selectcombo/virtual-select.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/l10n/es.min.js" integrity="sha512-qNFoLkoKxYYiUEW14iAJbDcNsfoLTNznoq7UTa5xUp23NmGnlgC/pPWzN5kMcQC4bm+eFx2ibqelc3ARWf+SJw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/themes/dark.css">
 
 
 <!-- creados.js -->
@@ -27,7 +31,8 @@
 <script type="text/javascript" src="../js/form-components/toggle-switch.js"></script>
 <script type="text/javascript" src="../js/ex/carousel-slider.js"></script>
 <script type="text/javascript" src="../js/ex/app.js"></script>
-
+<script type="text/javascript" src="../js/ex/moment.js"></script>
+<script type="text/javascript" src="../js/ex/moment-business-days.js"></script>
 
 <!-- 
 
