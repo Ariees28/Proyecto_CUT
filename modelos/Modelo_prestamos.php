@@ -88,11 +88,13 @@ class ModeloPrestamos{
     return $sql;
   }
 
+  //Obtenemos la lista de prestamos no entregados de un usuario dado
   public function prestamosUsuario($id){
     $sql = $this->db->query("SELECT * FROM prestamos WHERE id_solicitante = '$id' AND entregado = '0';");
     return $sql;
   }
 
+  // hacemos el retorno de un libro actualizando su status
   public function retornarLib($idLib, $idUs){
     $sql = $this->db->prepare("UPDATE prestamos SET entregado = '1' WHERE id_libro = '$idLib' AND id_solicitante = '$idUs';");
     try{
@@ -103,6 +105,7 @@ class ModeloPrestamos{
     }
   }
 
+  //Actualizamos el numero de libros prestados
   public function restarPrest($idLib){
     $sql = $this->db->prepare("UPDATE libros SET prestados = prestados-1 WHERE id_libro = '$idLib';");
     try{
@@ -111,6 +114,23 @@ class ModeloPrestamos{
     }catch(Exception $e){
       return false;
     }
+  }
+
+  //Obtenemos TODOS los prestamos (activos primero)
+  public function listaPresTotal(){
+    $sql = $this->db->query("SELECT * FROM prestamos ORDER BY entregado ASC");
+    return $sql;
+  }
+
+  //Obtener info de un usuario dado
+  public function infoUs($id){
+    $sql = $this->db->query("SELECT nombre FROM usuario WHERE id = '$id';");
+    return $sql;
+  }
+
+  public function infoUsBusq($info){
+    $sql = $this->db->query("SELECT * FROM usuario WHERE nombre LIKE '%$info%' OR login LIKE '%$info%' OR correo LIKE '%$info%';");
+    return $sql;
   }
 }
 

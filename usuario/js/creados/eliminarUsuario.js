@@ -60,7 +60,6 @@ function editar() {
         <div class="col-md-4">
           <label>TIPO DE USUARIO</label>
           <select name="tipo" id="tipo" class="form-control">
-            <option value="0">SUPER USUARIO</option>
             <option value="Admin">ADMINISTRADOR</option>
             <option value="Empleado">EMPLEADO</option>
             <option value="Lector">LECTOR</option>

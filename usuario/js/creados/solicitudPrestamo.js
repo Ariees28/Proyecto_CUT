@@ -3,6 +3,8 @@ var idLibro;
 
 m = moment();
 var minDate = m.date() + "-" + (m.month() + 1) + "-" + m.year();
+m.add(7, "day");
+var maxDate = m.date() + "-" + (m.month() + 1) + "-" + m.year();
 
 $.post(
   "../../proceso/Controlador_prestamos.php?op=numPrestamos",
@@ -23,6 +25,7 @@ $.post(
             enableTime: false,
             dateFormat: "d-m-Y",
             minDate: minDate,
+            maxDate: maxDate,
             disable: [
               function (date) {
                 return date.getDay() === 0 || date.getDay() === 6; // disable weekends

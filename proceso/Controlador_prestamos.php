@@ -33,7 +33,7 @@ switch ($_GET["op"]) {
         <div class='card'>
           <div class='card-body row'>
             <div class='col-lg-4 col-md-4 col-sm-4 mb-4'>
-              <img src='../../files/portadas/$reg->Portada' class='card-img-top' style='border-radius: 10px'>
+              <img src='../../files/portadas/$reg->Portada' class='card-img-top' style='border-radius: 10px' height='600'>
             </div>
             <div class='col-lg-8 col-md-8 col-sm-8 mb-4 row'>
               <h1 class='text-primary'>$reg->Titulo</h1>
@@ -402,6 +402,146 @@ switch ($_GET["op"]) {
       echo "Error al retornar el libro";
     }
 
+    break;
+
+  case "listadoPresTot":
+    //Arrays donde almacenaremos toda la información
+    $idUsuario  = array();
+    $idLibros   = array();
+    $nomUsu     = array();
+    $titulosLib = array();
+    $statusEntrega  = array();
+    $numSeguimiento = array();
+    $fechaSolicitud = array();
+    $fechaEntrega   = array();
+    $arregloMostrar = array();
+    //Mouskerramienta misteriosa(dia de hoy, para hacer comparaciones)
+    $hoy = date('Y-m-d');
+
+
+    //obtenemos todos los prestamos
+    $datosPrestamo = $modelo->listaPresTotal();
+    //almacenamos la info en los arrays correspondientes
+    while($r = $datosPrestamo->fetchObject()){
+      $idUsuario[]      = $r->id_solicitante;
+      $idLibros[]       = $r->id_libro;
+      $fechaSolicitud[] = $r->fecha_solicitud;
+      $fechaEntrega[]   = $r->fecha_entrega;
+      $numSeguimiento[] = $r->NumSeguim;
+      
+      if($r->fecha_entrega<$hoy && $r->entregado == "0"){
+        $statusEntrega[] = "ATRASADO";
+      }else if($r->entregado == "0"){
+        $statusEntrega[] = "PENDIENTE";
+      }else if($r->entregado == "1"){
+        $statusEntrega[] = "ENTREGADO";
+      }else{
+        $statusEntrega[] = "ERROR";
+      }
+    }
+
+    //con el array de id's de usuarios, obtenemos sus nombres
+    for ($i=0; $i < count($idUsuario); $i++) { 
+      $datosUsuario = $modelo->infoUs($idUsuario[$i]);
+      while($r = $datosUsuario->fetchObject()){
+        $nomUsu[] = $r->nombre;
+      }
+    }
+
+    //Hacemos lo mismo para los titulos de los libros
+    for ($i=0; $i < count($idLibros); $i++) { 
+      $datosLibros = $modelo->infoCompleta($idLibros[$i]);
+      while($r = $datosLibros->fetchObject()){
+        $titulosLib[] = $r->Titulo;
+      }
+    }
+
+    for($i=0; $i < count($idUsuario); $i++){
+      $arregloMostrar[] = array(
+        "0" => $titulosLib[$i],
+        "1" => $nomUsu[$i],
+        "2" => $numSeguimiento[$i],
+        "3" => $fechaSolicitud[$i],
+        "4" => $fechaEntrega[$i],
+        "5" => $statusEntrega[$i]
+      );
+    }
+
+    $results = array(
+      "sEcho" => 1,
+      "iTotalRecords" => count($arregloMostrar),
+      "iTotalDisplayRecords" => count($arregloMostrar),
+      "aaData" => $arregloMostrar
+    );
+    echo json_encode($results);
+    break;
+
+  case "numUsua":
+    $usuario = $_POST["usuario"];
+    $datosUs = $modelo->infoUsBusq($usuario);
+
+    if($datosUs->rowCount() == 0){
+      $arr[] = array(
+        "0" => "NO ENCONTRADO"
+      );
+      echo json_encode($arr);
+    }else if($datosUs->rowCount() > 1){
+      while($r = $datosUs->fetchObject()){
+        $arr[] = array(
+          "0" => $r->nombre,
+          "1" => $r->id
+        ); 
+      }
+      echo json_encode($arr);
+    }else{
+      $arr[] = array(
+        "0" => $datosUs->fetchObject()->nombre
+      );
+      echo json_encode($arr);
+    }
+    break;
+
+  case "prestUsuaBusq":
+    $usuario      = $_POST["usuario"];
+    $datosMostrar = array();
+    $nombre = "";
+    $correo = "";
+    $usRet  = "";
+    $verif  = "";
+    $idUs   = "";
+
+
+    $datosUs = $modelo->infoUsBusq($usuario);
+    if($datosUs->rowCount()>0){
+      while($r = $datosUs->fetchObject()){
+
+        $idUs   = $r->id;
+        $nombre = $r->nombre;
+        $correo = $r->Correo;
+        $usRet  = $r->Login;
+        if($r->verificado == "1"){
+          $verif = "VERIFICADO";
+        }else{
+          $verif = "NO VERIFICADO";
+        }
+      }
+      $datosMostrar[] = array(
+        "0" => $nombre,
+        "1" => $correo,
+        "2" => $usRet,
+        "3" => $verif,
+        "4" => $idUs
+      );
+    }else{
+      $datosMostrar[] = array(
+        "0" => "NO ENCONTRADO"
+      );
+    }
+    
+
+    
+
+    echo json_encode($datosMostrar);
     break;
 }
 

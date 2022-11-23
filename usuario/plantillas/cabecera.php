@@ -4,7 +4,9 @@ require_once "librerias.php";
 
 <div class="app-header__logo">
     <!--esconder y mostrar menu-->
-    <div class="logo-src"></div>
+    <div class="logo-src">
+        <img src="../images/andromedabiblioteca-logo.png" alt="" style="height: 30px; width: 200px">
+    </div>
     <div class="header__pane ms-auto">
         <div>
             <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">

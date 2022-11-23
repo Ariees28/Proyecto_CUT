@@ -42,7 +42,7 @@ switch ($_GET["op"]) {
       <div class='col-lg-2 col-md-3 col-sm-6 mb-4'>
         <div class='card'>
           <div class='card-body'>
-            <img src='../../files/portadas/$reg->Portada' class='card-img-top' style='border-radius: 10px'>
+            <img src='../../files/portadas/$reg->Portada' class='card-img-top' style='border-radius: 10px' height='300'>
             <br><br>
             <h4 class='text-primary overflow-ellipsis'>$reg->Titulo</h4>
             <h6 class='overflow-ellipsis'>$reg->Autor</h6>
@@ -102,7 +102,7 @@ switch ($_GET["op"]) {
       <div class='col-lg-2 col-md-2 col-sm-6 mb-4'>
         <div class='card'>
           <div class='card-body'>
-            <img src='../../files/portadas/$reg->Portada' class='card-img-top' style='border-radius: 10px'>
+            <img src='../../files/portadas/$reg->Portada' class='card-img-top' style='border-radius: 10px' height='300'>
             <br><br>
             <h4 class='text-primary overflow-ellipsis'>$reg->Titulo</h4>
             <h6 class='overflow-ellipsis'>$reg->Autor</h6>
@@ -136,7 +136,7 @@ switch ($_GET["op"]) {
         <div class='card'>
           <div class='card-body row'>
             <div class='col-lg-4 col-md-4 col-sm-4 mb-4'>
-              <img src='../../files/portadas/$reg->Portada' class='card-img-top' style='border-radius: 10px'>
+              <img src='../../files/portadas/$reg->Portada' class='card-img-top' style='border-radius: 10px' height='600'>
             </div>
             <div class='col-lg-8 col-md-8 col-sm-8 mb-4 row'>
               <h1 class='text-primary'>$reg->Titulo</h1>
