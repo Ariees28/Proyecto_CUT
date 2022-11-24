@@ -7,11 +7,10 @@
     <h1 class="text-success">NOMBRE: </h1>
     <h4 id="nombre">NOMBRE</h4>
     <h3 class="text-primary">USUARIO: </h3>
-    <h4 id="nombre">USUARIO</h4>
-    <h3 class="text-primary">LOGIN: </h3>
-    <h4 id="nombre">LOGIN</h4>
+    <h4 id="usuario">USUARIO</h4>
     <h3 class="text-primary">CORREO</h3>
-    <h4 id="nombre">CORREO</h4>
+    <h4 id="correo">CORREO</h4>
+    <h4 id="verif">CORREO</h4>
   </div>
   <div class="card col-md-6">
   </div>

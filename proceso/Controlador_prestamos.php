@@ -485,7 +485,7 @@ switch ($_GET["op"]) {
         "0" => "NO ENCONTRADO"
       );
       echo json_encode($arr);
-    }else if($datosUs->rowCount() > 1){
+    }else if($datosUs->rowCount() > 0){
       while($r = $datosUs->fetchObject()){
         $arr[] = array(
           "0" => $r->nombre,
@@ -493,16 +493,11 @@ switch ($_GET["op"]) {
         ); 
       }
       echo json_encode($arr);
-    }else{
-      $arr[] = array(
-        "0" => $datosUs->fetchObject()->nombre
-      );
-      echo json_encode($arr);
     }
     break;
 
   case "prestUsuaBusq":
-    $usuario      = $_POST["usuario"];
+    $id      = $_POST["id"];
     $datosMostrar = array();
     $nombre = "";
     $correo = "";
@@ -510,8 +505,7 @@ switch ($_GET["op"]) {
     $verif  = "";
     $idUs   = "";
 
-
-    $datosUs = $modelo->infoUsBusq($usuario);
+    $datosUs = $modelo->infoUs($id);
     if($datosUs->rowCount()>0){
       while($r = $datosUs->fetchObject()){
 
@@ -526,11 +520,11 @@ switch ($_GET["op"]) {
         }
       }
       $datosMostrar[] = array(
-        "0" => $nombre,
-        "1" => $correo,
-        "2" => $usRet,
-        "3" => $verif,
-        "4" => $idUs
+        "nombre" => $nombre,
+        "correo" => $correo,
+        "usuario" => $usRet,
+        "verif" => $verif,
+        "id" => $idUs
       );
     }else{
       $datosMostrar[] = array(
@@ -538,9 +532,6 @@ switch ($_GET["op"]) {
       );
     }
     
-
-    
-
     echo json_encode($datosMostrar);
     break;
 }

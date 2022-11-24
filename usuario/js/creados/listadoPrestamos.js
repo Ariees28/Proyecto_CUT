@@ -57,6 +57,12 @@ $(document).ready(function () {
           let datos = JSON.parse(res);
           if (datos["0"]["0"] == "NO ENCONTRADO") {
             alert("USUARIO NO ENCONTRADO");
+          } else if (datos.length == 1) {
+            idUs = datos["0"]["1"];
+            cargarcontenido(
+              "ContenedorPrincipal",
+              "listadoPrestamosBusqUs.php"
+            );
           } else {
             let cad = `
             <h1>VARIOS USUARIOS ENCONTRADOS</h1>

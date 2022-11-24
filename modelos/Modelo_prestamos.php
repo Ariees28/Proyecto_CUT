@@ -124,7 +124,7 @@ class ModeloPrestamos{
 
   //Obtener info de un usuario dado
   public function infoUs($id){
-    $sql = $this->db->query("SELECT nombre FROM usuario WHERE id = '$id';");
+    $sql = $this->db->query("SELECT * FROM usuario WHERE id = '$id';");
     return $sql;
   }
 
