@@ -35,4 +35,25 @@ class ModeloBusqueda {
     $sentencia = $this->db->query("SELECT descripcion FROM genero WHERE genero = '$genero';");
     return $sentencia;
   }
+
+  public function comentario($idLib, $idUs, $comentario){
+    $sql = $this->db->prepare("INSERT INTO comentarios(id_libro, id_usuario, comentario) VALUES(?,?,?)");
+
+    try{
+      $sql->execute([$idLib, $idUs, $comentario]);
+      return true;
+    }catch(Exception $e){
+      return false;
+    }
+  }
+
+  public function ultComent($libro){
+    $sql = $this->db->query("SELECT * FROM comentarios WHERE id_libro = '$libro' ORDER BY id_comentario DESC LIMIT 10;");
+    return $sql;
+  }
+
+  public function usuario($id){
+    $sql = $this->db->query("SELECT * FROM usuario WHERE id = '$id';");
+    return $sql;
+  }
 }

@@ -247,7 +247,7 @@ switch ($_GET["op"]) {
           if($fechaActual>$fechaEnt){
             $st = "<h5 class='text-danger'>FECHA DE ENTREGA EXCEDIDA</h5>";
           }else{
-            $st = "<h5 class='text-danger'>NO ENTREGADO</h5><p>Aun estás a tiempo</p>";
+            $st = "<h5 class='text-warning'>NO ENTREGADO</h5><p>Aun estás a tiempo</p>";
           }
         }else{
           $st = "<h5 class='text-success'>ENTREGADO</h5>";
@@ -534,5 +534,183 @@ switch ($_GET["op"]) {
     
     echo json_encode($datosMostrar);
     break;
+
+  case "listCuentPrest":
+    $idUs = $_POST["id"];
+    $res = $modelo->listPrestUs($idUs);
+    $cad = "";
+
+    if($res->rowCount() < 1){
+      echo "
+      <div class='card-group mt-4 col-md-7 mb-4'>
+      <div class='card'>
+        <img src='../../files/portadas/Portada_Generica.png' class='card-img-top' style='border-radius: 10px'>
+      </div>
+      <div class='card'>
+        <div class='card-body'>
+          <h1>ESTE USUARIO NO HA SOLICITADO PRESTAMOS</h1>
+          <p style='font-size: 15px;'>Se puede solicitar el prestamo de un libro desde el modulo de consulta de libros(es necesario que se haya verificado la cuenta de correo electronico con anterioridad)</p>
+        </div>
+      </div>
+    </div>
+    <div class='card-group mt-4 col-md-5 mb-4'></div>
+      ";
+    }else{
+      while($r = $res->fetchObject()){
+        //obtenemos el id del libro
+        $id = $r->id_libro;
+        //buscamos la info del libro
+        $info = $modeloB->infoCompleta($id);
+        $infoB = $info->fetchObject();
+        //obtenemos la info y la guardamos en variables
+        $img = $infoB->Portada;
+        $titulo = $infoB->Titulo;
+        $autor = $infoB->Autor;
+        $isbn = $infoB->ISBN;
+        //Ahora guardamos los datos del prestamo
+        $fechaSoli = $r->fecha_solicitud;
+        $fechaEnt = $r->fecha_entrega;
+        $st = $r->entregado;
+        //Obtemenos la fecha actual para comparar
+        $fechaActual = date('Y-m-d');
+        if($st == "0"){
+          if($fechaActual>$fechaEnt){
+            $st = "<h5 class='text-danger'>FECHA DE ENTREGA EXCEDIDA</h5>";
+          }else{
+            $st = "<h5 class='text-warning'>NO ENTREGADO</h5><p>Aun a tiempo</p>";
+          }
+        }else{
+          $st = "<h5 class='text-success'>ENTREGADO</h5>";
+        }
+        //concatenamos el div con la información
+        $cad .= "
+        <div class='card-group mt-4 col-md-6 mb-4'>
+        <div class='card'>
+          <img src='../../files/portadas/$img' class='card-img-top' style='border-radius: 10px'>
+        </div>
+        <div class='card'>
+          <div class='card-body'>
+            <h1>$titulo</h1>
+            <h4>AUTOR:</h4>
+            <p style='font-size: 15px;'>$autor</p>
+            <h4>ISBN:</h4>
+            <p style='font-size: 15px;'>$isbn</p>
+            <h4>FECHA SOLICITUD:</h4>
+            <p style='font-size: 15px;'>$fechaSoli</p>
+            <h4>FECHA ENTREGA:</h4>
+            <p style='font-size: 15px;'>$fechaEnt</p>
+            <h4>STATUS:</h4>
+            $st
+          </div>
+        </div>
+      </div>
+        ";
+      }
+      echo $cad;
+    }
+
+    break;
+
+
+  case "busqLibro":
+    $libro = $_POST["libro"];
+    $datosLib = $modelo->infoLibBusq($libro);
+
+    if($datosLib->rowCount() == 0){
+      $arr[] = array(
+        "0" => "NO ENCONTRADO"
+      );
+      echo json_encode($arr);
+    }else if($datosLib->rowCount() > 0){
+      while($r = $datosLib->fetchObject()){
+        $arr[] = array(
+          "0" => $r->Titulo,
+          "1" => $r->id_libro
+        ); 
+      }
+      echo json_encode($arr);
+    }
+    break;
+
+  case "infLibBusq":
+    $id = $_POST["id"];
+    $datosLib = $modelo->infoCompleta($id);
+
+    while($r = $datosLib->fetchObject()){
+      $arr[] = array(
+        "0" => $r->Titulo,
+        "1" => $r->Autor,
+        "2" => $r->Paginas,
+        "3" => $r->Genero,
+        "4" => $r->ISBN,
+        "5" => $r->Editorial,
+        "6" => $r->Portada,
+        "7" => $r->id_libro
+      );
+    }
+    echo json_encode($arr);
+    break;
+
+    case "listadoPresTot2":
+      //Arrays donde almacenaremos toda la información
+      $idUsuario  = array();
+      $nomUsu     = array();
+      $titulosLib = array();
+      $statusEntrega  = array();
+      $numSeguimiento = array();
+      $fechaSolicitud = array();
+      $fechaEntrega   = array();
+      $arregloMostrar = array();
+      //Mouskerramienta misteriosa(dia de hoy, para hacer comparaciones)
+      $hoy = date('Y-m-d');
+      $id_Lib = $_POST["idLib"];
+  
+  
+      //obtenemos todos los prestamos
+      $datosPrestamo = $modelo->listaPresTotal2($id_Lib);
+      //almacenamos la info en los arrays correspondientes
+      while($r = $datosPrestamo->fetchObject()){
+        $idUsuario[]      = $r->id_solicitante;
+        $fechaSolicitud[] = $r->fecha_solicitud;
+        $fechaEntrega[]   = $r->fecha_entrega;
+        $numSeguimiento[] = $r->NumSeguim;
+        
+        if($r->fecha_entrega<$hoy && $r->entregado == "0"){
+          $statusEntrega[] = "ATRASADO";
+        }else if($r->entregado == "0"){
+          $statusEntrega[] = "PENDIENTE";
+        }else if($r->entregado == "1"){
+          $statusEntrega[] = "ENTREGADO";
+        }else{
+          $statusEntrega[] = "ERROR";
+        }
+      }
+  
+      //con el array de id's de usuarios, obtenemos sus nombres
+      for ($i=0; $i < count($idUsuario); $i++) { 
+        $datosUsuario = $modelo->infoUs($idUsuario[$i]);
+        while($r = $datosUsuario->fetchObject()){
+          $nomUsu[] = $r->nombre;
+        }
+      }
+  
+      for($i=0; $i < count($idUsuario); $i++){
+        $arregloMostrar[] = array(
+          "0" => $nomUsu[$i],
+          "1" => $numSeguimiento[$i],
+          "2" => $fechaSolicitud[$i],
+          "3" => $fechaEntrega[$i],
+          "4" => $statusEntrega[$i],
+        );
+      }
+  
+      $results = array(
+        "sEcho" => 1,
+        "iTotalRecords" => count($arregloMostrar),
+        "iTotalDisplayRecords" => count($arregloMostrar),
+        "aaData" => $arregloMostrar
+      );
+      echo json_encode($results);
+      break;
 }
 

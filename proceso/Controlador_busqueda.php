@@ -217,4 +217,49 @@ switch ($_GET["op"]) {
     echo $cad;
     break;
 
+  case "comentar":
+    $coment = $_POST["comentario"];
+    $lib = $_POST["libro"];
+    $us = $_SESSION["id"];
+
+    if($modelo->comentario($lib, $us, $coment)){
+      echo "exito";
+    }else{
+      echo "false";
+    }
+    break;
+
+  case "ultComent":
+    $lib = $_POST["libro"];
+    $idUsuarios = array();
+    $comentarios = array();
+    $nomUsuario = array();
+    $respuesta = array();
+
+    $datos = $modelo->ultComent($lib);
+    while($r = $datos->fetchObject()){
+      $idUsuarios[] = $r->id_usuario;
+      $comentarios[] = $r->comentario;
+    }
+
+    for($i = 0; $i < count($idUsuarios); $i++){
+      $datos = $modelo->usuario($idUsuarios[$i]);
+      while($r = $datos->fetchObject()){
+        $nomUsuario[] = $r->nombre;
+      }
+      
+    }
+
+    if(count($idUsuarios) == "0"){
+      echo "NADA";
+    }else{
+      for($i = 0; $i < count($idUsuarios); $i++){
+        $respuesta[] = array(
+          "0" => $nomUsuario[$i],
+          "1" => $comentarios[$i]
+        );
+      }
+      echo json_encode($respuesta);
+    }
+    break;
 }

@@ -122,6 +122,11 @@ class ModeloPrestamos{
     return $sql;
   }
 
+  public function listaPresTotal2($id_lib){
+    $sql = $this->db->query("SELECT * FROM prestamos WHERE id_libro = '$id_lib' ORDER BY entregado ASC");
+    return $sql;
+  }
+
   //Obtener info de un usuario dado
   public function infoUs($id){
     $sql = $this->db->query("SELECT * FROM usuario WHERE id = '$id';");
@@ -131,6 +136,16 @@ class ModeloPrestamos{
   public function infoUsBusq($info){
     $sql = $this->db->query("SELECT * FROM usuario WHERE nombre LIKE '%$info%' OR login LIKE '%$info%' OR correo LIKE '%$info%';");
     return $sql;
+  }
+
+  public function infoLibBusq($info){
+    $sql = $this->db->query("SELECT * FROM libros WHERE Titulo LIKE '%$info%' OR ISBN LIKE '%$info%';");
+    return $sql;
+  }
+
+  public function infoLib($ISBN){
+    $sentencia = $this->db->query("SELECT * FROM libros WHERE ISBN = '$ISBN';");
+    return $sentencia;
   }
 }
 

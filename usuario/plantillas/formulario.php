@@ -6,7 +6,7 @@
 </style>
 <script src="../js/creados/formulario.js"></script>
 
-<h1>FORMULARIO</h1>
+<h1>  </h1>
 
 <div class="main-card mb-3 card">
   <div class="card-header"><h4 class="text-primary">FORMULARIO PARA REGISTRO DE LIBROS</h4></div>

@@ -48,7 +48,14 @@ $(document).ready(function () {
 
   $("#busqUs").click(function () {
     if ($("#buscUsuario").val() == "") {
-      alert("INGRESA UN USUARIO");
+      Swal.fire({
+        title: "ERROR",
+        icon: "warning",
+        text: "SELECCIONA UN USUARIO",
+        showConfirmButton: true,
+        showCancelButton: false,
+        confirmButtonText: "ENTENDIDO",
+      });
     } else {
       $.post(
         "../../proceso/Controlador_prestamos.php?op=numUsua",
@@ -56,7 +63,14 @@ $(document).ready(function () {
         function (res) {
           let datos = JSON.parse(res);
           if (datos["0"]["0"] == "NO ENCONTRADO") {
-            alert("USUARIO NO ENCONTRADO");
+            Swal.fire({
+              title: "ERROR",
+              icon: "warning",
+              text: "USUARIO NO ENCONTRADO",
+              showConfirmButton: true,
+              showCancelButton: false,
+              confirmButtonText: "ENTENDIDO",
+            });
           } else if (datos.length == 1) {
             idUs = datos["0"]["1"];
             cargarcontenido(
@@ -101,10 +115,72 @@ $(document).ready(function () {
   });
 
   $("#busqLi").click(function () {
-    $("#info").html("");
-    $("#info").append(
-      "<h1>Info de libros</h1><button type='button' onclick='regresar()'>Regresar al listado</button>"
-    );
+    if ($("#buscLibro").val() == "") {
+      Swal.fire({
+        title: "ERROR",
+        icon: "warning",
+        text: "SELECCIONA UN LIBRO",
+        showConfirmButton: false,
+        showCancelButton: true,
+        cancelButtonText: "CANCELAR",
+        cancelButtonColor: "#d33",
+      });
+    } else {
+      $.post(
+        "../../proceso/Controlador_prestamos.php?op=busqLibro",
+        { libro: $("#buscLibro").val() },
+        function (res) {
+          let datos = JSON.parse(res);
+          if (datos["0"]["0"] == "NO ENCONTRADO") {
+            Swal.fire({
+              title: "ERROR",
+              icon: "warning",
+              text: "LIBRO NO ENCONTRADO",
+              showConfirmButton: true,
+              showCancelButton: false,
+              confirmButtonText: "ENTENDIDO",
+            });
+          } else if (datos.length == 1) {
+            idLib = datos["0"]["1"];
+            cargarcontenido(
+              "ContenedorPrincipal",
+              "listadoPrestamosBusqLib.php"
+            );
+          } else {
+            let cad = `
+            <h1>VARIOS LIBROS ENCONTRADOS</h1>
+            <br>
+            <div class="row">
+            `;
+            for (let i = 0; i < datos.length; i++) {
+              cad += `
+              <div class= "col-md-12">
+                <button 
+                  id="${datos[i]["1"]}" 
+                  onclick="buscarLib(this)" 
+                  class="mb-2 mr-2 btn btn-success col-md-6"
+                >
+                ${datos[i]["0"]}
+                </button>
+                <br>
+              </div>
+            `;
+            }
+            cad += "</div>";
+
+            Swal.fire({
+              title: "!!",
+              icon: "info",
+              html: cad,
+              showConfirmButton: false,
+              showCancelButton: true,
+              cancelButtonText: "CANCELAR",
+              cancelButtonColor: "#d33",
+            });
+          }
+        }
+      );
+    }
   });
 });
 
@@ -116,4 +192,10 @@ function buscar(boton) {
   idUs = boton.id;
   Swal.close();
   cargarcontenido("ContenedorPrincipal", "listadoPrestamosBusqUs.php");
+}
+
+function buscarLib(boton) {
+  ISBN = boton.id;
+  Swal.close();
+  cargarcontenido("ContenedorPrincipal", "listadoPrestamosBusqLib.php");
 }

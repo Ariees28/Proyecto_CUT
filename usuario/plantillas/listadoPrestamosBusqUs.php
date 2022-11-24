@@ -11,8 +11,10 @@
     <h3 class="text-primary">CORREO</h3>
     <h4 id="correo">CORREO</h4>
     <h4 id="verif">CORREO</h4>
+    <button id="regresar" class="btn-wide mb-2 mr-2 btn btn-warning btn-lg" onclick="cargarcontenido('ContenedorPrincipal','listadoPrestamos.php')">REGRESAR A LISTADO DE PRESTAMOS</button>
   </div>
-  <div class="card col-md-6">
+  <div class="card col-md-6" style="align-items: center; text-align: center">
+    
   </div>
 </div>
 
